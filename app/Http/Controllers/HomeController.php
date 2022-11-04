@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\CheckUser;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,8 +14,15 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth']);
+        $this->middleware(['checkuser']);
+
+
+
+
     }
+
+
 
     /**
      * Show the application dashboard.
@@ -24,5 +32,6 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+
     }
 }
