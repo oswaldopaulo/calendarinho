@@ -24,5 +24,7 @@ class CheckUser
         if (!Auth::user()->email_verified_at) {
             return redirect('/email/verify')->with('email_not_verified', 'Email not verified, Please check your email to validate it');
         }
+
+        return $next($request);
     }
 }

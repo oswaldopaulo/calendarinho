@@ -10,6 +10,7 @@
                                     class="text-center font-weight-light my-4">{{ __('Login') }}</h3></div>
                             <div class="card-body">
                                 <form method="POST" action="{{ route('login') }}">
+                                    @csrf
                                     <div class="form-floating mb-3">
 
 
