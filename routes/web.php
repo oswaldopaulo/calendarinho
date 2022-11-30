@@ -15,9 +15,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes(['verify' => true]);
 
@@ -27,10 +25,19 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::controller(App\Http\Controllers\HomeController::class)->group(function () {
+    Route::get('/', 'index');
     Route::get('/home', 'index');
     Route::post('/form2', 'form2');
 });
+
+
+Route::controller(App\Http\Controllers\CalendarController::class)->group(function () {
+    Route::get('calendar', 'index');
+
+});
+
+
+
 
