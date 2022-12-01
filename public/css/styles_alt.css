@@ -12259,3 +12259,13 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
     border: none;
 }
+
+.fc-event-title, .fc-event-time {
+    color: #1a1e21;
+
+
+}
+
+.fc-daygrid-event {
+    background: #e9edf1;
+}

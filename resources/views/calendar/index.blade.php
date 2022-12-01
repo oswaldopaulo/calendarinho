@@ -18,8 +18,9 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
+                eventColor: 'green',
 
-              // events:'{{ url('full-calender')}}',
+              events:'{{ url('calendar/getevents')}}',
 
 
 
@@ -58,13 +59,35 @@
             <li class="breadcrumb-item"><a href="{{ url("/") }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Tables</li>
         </ol>
-        <div class="card mb-4">
-            <div class="card-body">
-                Controle aqui a seu calendário
+{{--        <div class="card mb-4">--}}
+{{--            <div class="card-body">--}}
+{{--                Controle aqui a seu calendário--}}
 
 
-            </div>
-        </div>
+{{--            </div>--}}
+{{--        </div>--}}
+
+        @if(session('acao'))
+            @if(session('id'))
+                <div class="card bg-warning text-white mb-4 card mb-4" id="msg" style="padding: 5px">
+                    <div class="card-body">
+                        <strong>Sucesso!</strong>
+                        O registro {{ session('id')  }}  foi deletado.
+                    </div>
+
+                </div>
+            @endif
+        @else
+            @if(session('id'))
+                <div class="card bg-success text-white mb-4 card mb-4" id="msg" style="padding: 5px">
+                    <div class="card-body">
+                        <strong>Sucesso! </strong>
+                        O registro {{ session('id')  }} {{ session('desc')  }} foi gravado.
+                    </div>
+                </div>
+
+            @endif
+        @endif
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-calendar-alt me-1"></i>
@@ -75,5 +98,14 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    setInterval(function () {
+
+        document.getElementById("msg").style.display = "none";
+    }, 5 * 1000); // do this every 10 seconds
+
+
+    </script>
+
 
 @endsection

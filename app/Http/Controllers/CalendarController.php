@@ -23,7 +23,7 @@ class CalendarController extends Controller
 
     public function update(EventsRequest $r)
     {
-        dd(Request::all());
+
 
         if (Request::input('end')) {
             $end = Request::input('end');
@@ -33,10 +33,10 @@ class CalendarController extends Controller
             $end = str_replace(" ", "T", $end);
         }
 
-        DB::table('events')->updateOrInsert(
+        $id = DB::table('events')->updateOrInsert(
 
 
-            ['id'=>Request::input('id') ?? -1],
+            ['id'=>Request::input('id') ?? 0],
             [
             'description' => Request::input('description'),
             'title' => Request::input('title'),
@@ -48,6 +48,12 @@ class CalendarController extends Controller
 
         ]);
 
-        return redirect()->route('calendar')->with(['id' => $id, 'desc' => Request::input('description')]);
+       // return redirect()->action('CalendarController@index')->with(['id' => $id, 'desc' => Request::input('descricao')]);
+        return redirect()->action([CalendarController::class, 'index'])->with(['id' => $id, 'desc' => Request::input('description')]);
+    }
+
+    public static function getEvents(){
+        $json = DB::table("events")->where('ativo','S')->get();
+       return response()->json($json);
     }
 }
