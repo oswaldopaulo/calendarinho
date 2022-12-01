@@ -43,6 +43,31 @@
                     }
 
 
+                },
+
+                eventClick: function(info) {
+                    alert('Event: ' + info.event.title);
+                    alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+                    alert('View: ' + info.view.type);
+
+                    // change the border color just for fun
+                    info.el.style.borderColor = 'red';
+                },
+
+                eventResize: function(info) {
+                    alert(info.event.title + " end is now " + info.event.end.toISOString());
+
+                    if (!confirm("is this okay?")) {
+                        info.revert();
+                    }
+                },
+
+                eventDrop: function(info) {
+                    alert(info.event.title + " was dropped on " + info.event.start.toISOString());
+
+                    if (!confirm("Are you sure about this change?")) {
+                        info.revert();
+                    }
                 }
 
 
