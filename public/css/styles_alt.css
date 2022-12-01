@@ -387,7 +387,7 @@ h1, h2, h3, h4, h5, h6,
     margin-bottom: 0.5rem;
     font-weight: 500;
     line-height: 1.2;
-    color: #0F7BDE;
+    color: #124779;
     font-variant: initial !important;
 
 }
@@ -2683,8 +2683,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #ff8585;
-    border-color: #ff8585;
+    background-color: #0c3854;
+    border-color: #0c3854;
     border-radius: 10px;
 }
 
@@ -11030,8 +11030,12 @@ body {
 
 }
 
-.sb-nav-link-icon {
-    color: #0F7BDE
+.sb-nav-link-icon  {
+    color: #15416c
+}
+
+.fa {
+    color: #15416c
 }
 
 .sb-sidenav-light .sb-sidenav-footer {
@@ -12239,3 +12243,19 @@ td a {
     }
 }
 
+.fc-toolbar {
+    text-transform: uppercase;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}

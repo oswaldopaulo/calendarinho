@@ -11,8 +11,42 @@
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                editable:true,
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+
+              // events:'{{ url('full-calender')}}',
+
+
+
+                selectable:true,
+                //selectHelper: true,
                 locale: 'pt-br',
                 themeSystem: 'bootstrap5',
+
+                dateClick: function(info) {
+
+                    info.jsEvent.preventDefault();
+
+                    console.log(info);
+
+                    if(info.allDay){
+
+                        let hora = new Date().toLocaleTimeString();
+                        start = info.dateStr + "T" + hora;
+                        window.location.href = "{{ url('calendar/novo')}}" + "?start=" + start;
+                    }
+
+
+                }
+
+
+
+
             });
             calendar.render();
         });
@@ -21,12 +55,12 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Tables</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ url("/") }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Tables</li>
         </ol>
         <div class="card mb-4">
             <div class="card-body">
-                DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
+                Controle aqui a seu calendário
 
 
             </div>
@@ -34,7 +68,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-calendar-alt me-1"></i>
-                DataTable Example
+                Calendário
             </div>
             <div class="card-body">
                 <div id='calendar'></div>
