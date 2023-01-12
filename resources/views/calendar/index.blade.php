@@ -9,6 +9,7 @@
     <script>
 
         document.addEventListener('DOMContentLoaded', function() {
+            var url = "{{ url('calendar/action')}}"
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
@@ -66,11 +67,31 @@
                 },
 
                 eventDrop: function(info) {
-                    alert(info.event.title + " was dropped on " + info.event.start.toISOString());
+                 //   alert(info.event.title + " was dropped on " + info.event.start.toISOString());
 
-                    if (!confirm("Are you sure about this change?")) {
-                        info.revert();
-                    }
+                    var start =  info.event.start;
+                    var end =  info.event.end;
+                    var title = info.event.title;
+                    var id =info.event.id;
+                    $.ajax({
+                        url:url,
+                        type:"POST",
+                        data:{
+                            title: title,
+                            start: start,
+                            end: end,
+                            id: id,
+                            type: 'update'
+                        },
+                        success:function(response)
+                        {
+                            calendar.fullCalendar('refetchEvents');
+                        }
+                    })
+
+                    // if (!confirm("Are you sure about this change?")) {
+                    //     info.revert();
+                    // }
                 }
 
 
