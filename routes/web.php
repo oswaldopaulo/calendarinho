@@ -37,6 +37,7 @@ Route::controller(App\Http\Controllers\CalendarController::class)->group(functio
     Route::get('calendar', 'index');
     Route::get('index', 'index');
     Route::get('calendar/novo', 'form');
+    Route::get('calendar/editar/{id}', 'form');
     Route::get('calendar/getevents', 'getEvents');
     Route::post('calendar/update', 'update');
 

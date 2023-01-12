@@ -16,6 +16,9 @@ class CalendarController extends Controller
 
     public function form($id=null){
 
+        if($id != null){
+            $r=DB::table('events')->where('id',$id)->first();
+        }
 
         return view('calendar.form')->with(['r'=>$r??null]);
 

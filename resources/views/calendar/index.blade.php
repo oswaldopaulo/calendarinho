@@ -33,7 +33,7 @@
 
                     info.jsEvent.preventDefault();
 
-                    console.log(info);
+                  //  console.log(info);
 
                     if(info.allDay){
 
@@ -46,12 +46,15 @@
                 },
 
                 eventClick: function(info) {
-                    alert('Event: ' + info.event.title);
-                    alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-                    alert('View: ' + info.view.type);
+                    //alert('Event: ' + info.event.id);
+
+                    if(info.event.id){
+                        window.location.href = "{{ url('calendar/editar')}}/" + info.event.id;
+                    }
+
 
                     // change the border color just for fun
-                    info.el.style.borderColor = 'red';
+                    //info.el.style.borderColor = 'red';
                 },
 
                 eventResize: function(info) {

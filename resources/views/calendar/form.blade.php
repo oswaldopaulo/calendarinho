@@ -36,7 +36,7 @@
                       enctype="multipart/form-data">
                     @csrf
                     @if($r)
-                        @if($r-id)
+                        @if($r->id)
                             <input type="hidden" name="id" id="id" value="{{ $r->id}}"/>
 
                             @if(!empty($ignore))
